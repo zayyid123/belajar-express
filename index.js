@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose')
 
 const app = express();
 const authRoutes = require('./src/routes/auth')
@@ -28,4 +29,8 @@ app.use((error, req, res, next) => {
     })
 })
 
-app.listen(4000)
+mongoose.connect('mongodb+srv://zayyid:vkIiJdpQ7KFUTVLb@cluster0.kgcovbs.mongodb.net/blog?retryWrites=true&w=majority')
+    .then(() => {
+        app.listen(4000, () => { console.log('connect succes') })
+    })
+    .catch(err => console.log(err))
