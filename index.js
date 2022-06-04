@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const app = express();
 const authRoutes = require('./src/routes/auth')
 const blogRoutes = require('./src/routes/blog')
+const sandi = require('./sandi')
 
 app.use(bodyParser.json())
 
@@ -29,7 +30,7 @@ app.use((error, req, res, next) => {
     })
 })
 
-mongoose.connect('mongodb+srv://zayyid:vkIiJdpQ7KFUTVLb@cluster0.kgcovbs.mongodb.net/blog?retryWrites=true&w=majority')
+mongoose.connect(`mongodb+srv://zayyid:${sandi.sandi}@cluster0.kgcovbs.mongodb.net/blog?retryWrites=true&w=majority`)
     .then(() => {
         app.listen(4000, () => { console.log('connect succes') })
     })
